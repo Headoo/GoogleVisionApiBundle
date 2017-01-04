@@ -1,0 +1,6 @@
+framework:
+    secret:          secret
+
+
+headoo_google_vision_api:
+  api_key: '%apikey%'

@@ -1,0 +1,4 @@
+services:
+    headoo_google_vision_api.helper:
+        class: Headoo\GoogleVisionApiBundle\Helper\GoogleVisionApiHelper
+        arguments: ['%headoo_google_vision_api.api_key%']
