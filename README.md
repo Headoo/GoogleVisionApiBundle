@@ -10,7 +10,38 @@ GoogleVisionApiBundle is a Symfony2/3 Bundle for use the API Google Vision simpl
 
 ## Installation
 
-`composer require headoo/google-vision-api-bundle`
+Via Composer
+
+``` bash
+$ composer require headoo/google-vision-api-bundle
+```
+or in composer.json file
+``` bash
+"headoo/google-vision-api-bundle": "dev-master"
+```
+
+Register the bundle in `app/AppKernel.php`:
+
+``` php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Headoo\GoogleVisionApiBundle\HeadooGoogleVisionApiBundle(),
+        // ...
+    );
+}
+```
+
+Configuration
+-------------
+
+Configure the google api key in your `config.yml` :
+
+``` yaml
+headoo_google_vision_api:
+    api_key: '%apikey%'
+```
 
 ## Usage
 
