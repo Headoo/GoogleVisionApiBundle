@@ -147,7 +147,7 @@ class GoogleVisionApiHelper
                 return $this->_request($base64Image, $type);
                 break;
             default:
-                return $this->_request($base64Image, $type);
+                return $this->_request($base64Image, 'TYPE_UNSPECIFIED');
         }
     }
 
