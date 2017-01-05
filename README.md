@@ -5,6 +5,10 @@ GoogleVisionApiBundle
 
 GoogleVisionApiBundle is a Symfony Bundle for use the API Google Vision simply (https://cloud.google.com/vision/)
 
+## Install
+
+composer require Headoo/google-vision-api-bundle
+
 ## Usage
 
 It works like a service
