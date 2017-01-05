@@ -24,6 +24,7 @@ addons:
 matrix:
   allow_failures:
     - php: hhvm
+    - env: SYMFONY_VERSION=3.2.*
 
 script:
   - mkdir -p build/logs
