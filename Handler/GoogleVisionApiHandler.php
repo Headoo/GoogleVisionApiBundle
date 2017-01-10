@@ -172,9 +172,9 @@ class GoogleVisionApiHandler
             $_color = new Color();
             $_color->setScore($color->score);
             $_color->setPixelFraction($color->pixelFraction);
-            $_color->setRed($color->color->red);
-            $_color->setGreen($color->color->green);
-            $_color->setBlue($color->color->blue);
+            isset($color->color->red) ? $_color->setRed($color->color->red) : null;
+            isset($color->color->green) ? $_color->setGreen($color->color->green) : null;
+            isset($color->color->blue) ? $_color->setBlue($color->color->blue) : null;
 
             $oImagePropertiesAnnotation->addDominantColors($_color);
         }

@@ -71,9 +71,9 @@ You can use all detections functionality with 1 endpoint:
 ## Return
 You will receive an array with http_code, raw_response and a parsed_response.
 
-http_code : Google Http Code Response (often 200 for OK, and 400 for error)
-raw_response : Google Vision Api Response Raw, without manipulation
-parsed_response : Parsed response with objects, easier to use for a PHP user.
+  - http_code : Google Http Code Response (often 200 for OK, and 400 for error)
+  - raw_response : Google Vision Api Response Raw, without manipulation
+  - parsed_response : Parsed response with objects, easier to use for a PHP user.
 
 ##Security
 If you discover a security vulnerability , please email instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
