@@ -30,6 +30,7 @@ class GoogleVisionApiHelperTest extends KernelTestCase
         $this->_image_landmark          = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/landmark.jpg');
         $this->_image_logo              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/logo.png');
         $this->_image_text              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/text.png');
+        $this->_not_image              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/notimage.jpg');
     }
 
     public function testTypeUnspecified()
@@ -76,4 +77,38 @@ class GoogleVisionApiHelperTest extends KernelTestCase
     {
         $this->assertEquals(200 , $this->_googleVisionApiHelper->vision($this->_image_face,'IMAGE_PROPERTIES')['http_code']);
     }
+
+    public function testVisionExceptionContentFalse()
+    {
+        $this->expectException(Exception::class);
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision("not-a-file");
+    }
+
+    public function testVisionException503()
+    {
+        $this->expectException(Exception::class);
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/503');
+    }
+
+    public function testVisionException404()
+    {
+        $this->expectException(Exception::class);
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/404');
+    }
+
+    public function testVisionException403()
+    {
+        $this->expectException(Exception::class);
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/403');
+    }
+
+
+    public function testVisionExceptionNotImage()
+    {
+        $this->expectException(Exception::class);
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision($this->_not_image);
+    }
+
+
+
 }

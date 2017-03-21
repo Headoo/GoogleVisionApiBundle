@@ -2,8 +2,8 @@
 
 namespace Headoo\GoogleVisionApiBundle\Helper;
 
-
 use Headoo\GoogleVisionApiBundle\Handler\GoogleVisionApiHandler;
+use \Exception;
 
 class GoogleVisionApiHelper
 {
@@ -114,8 +114,20 @@ class GoogleVisionApiHelper
      */
     public function vision($image, $type = null){
         if (preg_match("#^https?://.+#", $image) || substr($image,0,1) == '/') {
-            $data               = file_get_contents($image);
+            $data = @file_get_contents($image);
+
+            // check file_get_contents failed
+            if ($data === false) {
+                throw new Exception(sprintf('file_get_contents() failed on “%s”', $image))
+            }
+
+            //  check if file_get_contents returns a valid image
+            if (!is_resource(imagecreatefromstring($data))) {
+                throw new Exception(sprintf('imagecreatefromstring() failed on “%s”', $image))
+            }
+
             $base64Image        = base64_encode($data);
+
         }else{
             $mediaBase64        = explode(";",  $image);
             $base64Image        = explode(",",  $mediaBase64[1]);
