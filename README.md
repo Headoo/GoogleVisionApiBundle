@@ -86,7 +86,7 @@ If you discover a security vulnerability , please email instead of using the iss
 2. go into directory : `$ cd GoogleVisionApiBundle/`
 3. install composer as explained here : https://getcomposer.org/download/
 4. launch composer update : `$ ./composer.phar update`
-5. modify `headoo_google_vision_api.api_key`in `Tests/App/config.yml
+5. modify `headoo_google_vision_api.api_key` in `Tests/App/config.yml`
 6. launch test : `$ ./vendor/phpunit/phpunit/phpunit`
 
 ## License
