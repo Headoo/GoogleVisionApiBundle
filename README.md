@@ -75,8 +75,19 @@ You will receive an array with http_code, raw_response and a parsed_response.
   - raw_response : Google Vision Api Response Raw, without manipulation
   - parsed_response : Parsed response with objects, easier to use for a PHP user.
 
-##Security
+## Security
 If you discover a security vulnerability , please email instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
 
-##License
+## Standalone Test
+
+### How to test
+
+1. clone repo : `$ sudo git clone https://github.com/Headoo/GoogleVisionApiBundle.git`
+2. go into directory : `$ cd GoogleVisionApiBundle/`
+3. install composer as explained here : https://getcomposer.org/download/
+4. launch composer update : `$ ./composer.phar update`
+5. modify headoo_google_vision_api.api_key in Tests/App/config.yml
+6. launch test : `$ ./vendor/phpunit/phpunit/phpunit`
+
+## License
 This Bundle is open-sourced software licensed under the MIT license
