@@ -3,6 +3,7 @@
 namespace Headoo\GoogleVisionApiHelper\Tests\Helper;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use \Exception;
 
 class GoogleVisionApiHelperTest extends KernelTestCase
 {
@@ -81,32 +82,32 @@ class GoogleVisionApiHelperTest extends KernelTestCase
     public function testVisionExceptionContentFalse()
     {
         $this->expectException(Exception::class);
-        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision("not-a-file");
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision("not-a-file"));
     }
 
     public function testVisionException503()
     {
         $this->expectException(Exception::class);
-        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/503');
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/503'));
     }
 
     public function testVisionException404()
     {
         $this->expectException(Exception::class);
-        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/404');
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/404'));
     }
 
     public function testVisionException403()
     {
         $this->expectException(Exception::class);
-        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/403');
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision('http://ozuma.sakura.ne.jp/httpstatus/403'));
     }
 
 
     public function testVisionExceptionNotImage()
     {
         $this->expectException(Exception::class);
-        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision($this->_not_image);
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision($this->_not_image));
     }
 
 

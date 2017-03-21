@@ -118,18 +118,25 @@ class GoogleVisionApiHelper
 
             // check file_get_contents failed
             if ($data === false) {
-                throw new Exception(sprintf('file_get_contents() failed on “%s”', $image))
+                throw new Exception(sprintf('file_get_contents() failed on “%s”', $image));
             }
 
             //  check if file_get_contents returns a valid image
-            if (!is_resource(imagecreatefromstring($data))) {
-                throw new Exception(sprintf('imagecreatefromstring() failed on “%s”', $image))
+            
+            if (!is_resource(@imagecreatefromstring($data))) {
+                throw new Exception(sprintf('imagecreatefromstring() failed on “%s”', $image));
             }
 
             $base64Image        = base64_encode($data);
 
         }else{
             $mediaBase64        = explode(";",  $image);
+
+            // Check Undefined offset: 1
+            if (!array_key_exists(1, $mediaBase64)) {
+                throw new Exception("Undefined offset: 1");
+            }
+
             $base64Image        = explode(",",  $mediaBase64[1]);
         }
 
