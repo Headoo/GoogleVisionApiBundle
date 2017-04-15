@@ -8,10 +8,13 @@ use Headoo\GoogleVisionApiBundle\Annotations\LandmarkAnnotation;
 use Headoo\GoogleVisionApiBundle\Annotations\LogoAnnotation;
 use Headoo\GoogleVisionApiBundle\Annotations\SafeSearchAnnotation;
 use Headoo\GoogleVisionApiBundle\Annotations\TextAnnotation;
+use Headoo\GoogleVisionApiBundle\Annotations\WebDetection;
 use Headoo\GoogleVisionApiBundle\Model\Landmark;
 use Headoo\GoogleVisionApiBundle\Poly\BoundingPoly;
 use Headoo\GoogleVisionApiBundle\Model\Color;
 use Headoo\GoogleVisionApiBundle\Model\Vertice;
+use Headoo\GoogleVisionApiBundle\Model\MatchingImage;
+use Headoo\GoogleVisionApiBundle\Model\WebEntity;
 use Headoo\GoogleVisionApiBundle\Poly\FdBoundingPoly;
 use Headoo\GoogleVisionApiBundle\Properties\ImageProperties;
 
@@ -145,6 +148,90 @@ class GoogleVisionApiHandler
         }
 
         return $oTextAnnotation;
+    }
+
+
+    /**
+     * @param $obj
+     * @param $webEntity
+     * @return mixed
+     */
+    private static function _addWebEntity($mainObj, $webEntity){
+        $_webEntity = new WebEntity();
+
+        if(isset($webEntity->entityId)){
+            $_webEntity->setEntityId($webEntity->entityId);
+        }
+
+        if(isset($webEntity->score)){
+            $_webEntity->setScore($webEntity->score);
+        }
+
+        if(isset($webEntity->description)){
+            $_webEntity->setDescription($webEntity->description);
+        }
+
+        $mainObj->addWebEntity($_webEntity);
+
+        return $mainObj;
+    }
+
+    /**
+     * @param $obj
+     * @param $matchingImage
+     * @param $method
+     * @return mixed
+     */
+    private static function _addMatchingImages($mainObj, $matchingImage, $method){
+        $_partialMatchingImage = new MatchingImage();
+
+        if(isset($matchingImage->url)){
+            $_partialMatchingImage->setUrl($matchingImage->url);
+        }
+
+        if(isset($matchingImage->score)){
+            $_partialMatchingImage->setScore($matchingImage->score);
+        }
+
+        $mainObj->$method($_partialMatchingImage);
+
+        return $mainObj;
+    }
+
+
+    /**
+     * @param $obj
+     * @return WebDetection
+     */
+    public static function objectifyWebDetection($obj){
+
+        $oWebDetection = new WebDetection();
+
+        if(isset($obj->webEntities)) {
+            foreach ($obj->webEntities as $webEntity) {
+                self::_addWebEntity($oWebDetection, $webEntity);
+            }
+        }
+
+        if (isset($obj->partialMatchingImages)) {
+            foreach ($obj->partialMatchingImages as $partialMatchingImage) {
+                self::_addMatchingImages($oWebDetection, $partialMatchingImage, 'addPartialMatchingImage');
+            }
+        }
+
+        if (isset($obj->pagesWithMatchingImages)) {
+            foreach ($obj->pagesWithMatchingImages as $pagesWithMatchingImage) {
+                self::_addMatchingImages($oWebDetection, $pagesWithMatchingImage, 'addPagesWithMatchingImage');;
+            }
+        }
+
+        if (isset($obj->visuallySimilarImages)) {
+            foreach ($obj->visuallySimilarImages as $visuallySimilarImage) {
+                self::_addMatchingImages($oWebDetection, $visuallySimilarImage, 'addVisuallySimilarImage');;
+            }
+        }
+
+        return $oWebDetection;
     }
 
     /**

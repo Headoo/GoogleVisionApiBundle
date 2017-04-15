@@ -66,6 +66,7 @@ You can use all detections functionality with 1 endpoint:
   - TEXT_DETECTION
   - SAFE_SEARCH_DETECTION
   - IMAGE_PROPERTIES 
+  - WEB_DETECTION 
 
 ## Return
 You will receive an array with http_code, raw_response and a parsed_response.

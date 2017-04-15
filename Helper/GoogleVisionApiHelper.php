@@ -27,6 +27,7 @@ class GoogleVisionApiHelper
     const TEXT_DETECTION         = 'TEXT_DETECTION';
     const SAFE_SEARCH_DETECTION  = 'SAFE_SEARCH_DETECTION';
     const IMAGE_PROPERTIES       = 'IMAGE_PROPERTIES';
+    const WEB_DETECTION          = 'WEB_DETECTION';
 
 
     /**
@@ -165,6 +166,9 @@ class GoogleVisionApiHelper
             case self::IMAGE_PROPERTIES:
                 return $this->_request($base64Image, $type);
                 break;
+            case self::WEB_DETECTION:
+                return $this->_request($base64Image, $type);
+                break;
             default:
                 return $this->_request($base64Image, 'TYPE_UNSPECIFIED');
         }
@@ -250,6 +254,20 @@ class GoogleVisionApiHelper
             }
         }
         return $_textAnnotations;
+    }
+
+    /**
+     * @param $response
+     * @return array
+     */
+    private function _parseWebDetection($response){
+        $_webDetection = [];
+
+        if(isset($response->webDetection)){
+            $_webDetection = GoogleVisionApiHandler::objectifyWebDetection($response->webDetection);
+        }
+
+        return $_webDetection;
     }
 
     /**
