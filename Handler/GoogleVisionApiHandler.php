@@ -156,7 +156,7 @@ class GoogleVisionApiHandler
      * @param $webEntity
      * @return mixed
      */
-    private static function _addWebEntity($mainObj, $webEntity){
+    private static function _addWebEntity($obj, $webEntity){
         $_webEntity = new WebEntity();
 
         if(isset($webEntity->entityId)){
@@ -171,9 +171,9 @@ class GoogleVisionApiHandler
             $_webEntity->setDescription($webEntity->description);
         }
 
-        $mainObj->addWebEntity($_webEntity);
+        $obj->addWebEntity($_webEntity);
 
-        return $mainObj;
+        return $obj;
     }
 
     /**
@@ -182,7 +182,7 @@ class GoogleVisionApiHandler
      * @param $method
      * @return mixed
      */
-    private static function _addMatchingImages($mainObj, $matchingImage, $method){
+    private static function _addMatchingImages($obj, $matchingImage, $method){
         $_partialMatchingImage = new MatchingImage();
 
         if(isset($matchingImage->url)){
@@ -193,9 +193,9 @@ class GoogleVisionApiHandler
             $_partialMatchingImage->setScore($matchingImage->score);
         }
 
-        $mainObj->$method($_partialMatchingImage);
+        $obj->$method($_partialMatchingImage);
 
-        return $mainObj;
+        return $obj;
     }
 
 
