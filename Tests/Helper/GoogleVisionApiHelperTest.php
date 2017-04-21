@@ -17,6 +17,7 @@ class GoogleVisionApiHelperTest extends KernelTestCase
     private $_image_landmark;
     private $_image_logo;
     private $_image_text;
+    private $_image_web;
 
 
     /**
@@ -32,6 +33,7 @@ class GoogleVisionApiHelperTest extends KernelTestCase
         $this->_image_logo              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/logo.png');
         $this->_image_text              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/text.png');
         $this->_not_image              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/notimage.jpg');
+        $this->_image_web              = static::$kernel->locateResource('@HeadooGoogleVisionApiBundle/Resources/public/images/web.jpg');
     }
 
     public function testTypeUnspecified()
@@ -77,6 +79,11 @@ class GoogleVisionApiHelperTest extends KernelTestCase
     public function testImagePropertiesDetection()
     {
         $this->assertEquals(200 , $this->_googleVisionApiHelper->vision($this->_image_face,'IMAGE_PROPERTIES')['http_code']);
+    }
+
+    public function testWebDetection()
+    {
+        $this->assertEquals(200 , $this->_googleVisionApiHelper->vision($this->_image_web,'WEB_DETECTION')['http_code']);
     }
 
     public function testVisionExceptionContentFalse()
