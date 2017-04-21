@@ -2,7 +2,7 @@ language: php
 
 php:
   - 7.1
-  - hhvm
+  - 7.0
 
 env:
   - SYMFONY_VERSION=2.8.*
@@ -21,7 +21,6 @@ addons:
 
 matrix:
   allow_failures:
-    - php: hhvm
     - env: SYMFONY_VERSION=3.2.*
 
 script:
