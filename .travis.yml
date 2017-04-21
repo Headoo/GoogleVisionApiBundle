@@ -6,7 +6,6 @@ php:
 
 env:
   - SYMFONY_VERSION=2.8.*
-  - SYMFONY_VERSION=3.0.*
   - SYMFONY_VERSION=3.2.*
 
 before_script:
@@ -15,13 +14,6 @@ before_script:
 install:
    - composer require symfony/framework-bundle:${SYMFONY_VERSION}
 
-addons:
-  code_climate:
-    repo_token: 7fabc6e1cfeecb6439f37353118650e1f09ea7f8ac6cea8fc99c34a7c5b9a95b
-
-matrix:
-  allow_failures:
-    - env: SYMFONY_VERSION=3.2.*
 
 script:
   - mkdir -p build/logs
