@@ -4,6 +4,7 @@ GoogleVisionApiBundle
 [![Build Status](https://travis-ci.org/Headoo/GoogleVisionApiBundle.svg?branch=master)](https://travis-ci.org/Headoo/GoogleVisionApiBundle)
 [![Code Climate](https://codeclimate.com/repos/586d36a2b6458d0057000b09/badges/716b4518f3c6428d72e2/gpa.svg)](https://codeclimate.com/repos/586d36a2b6458d0057000b09/feed)
 [![Latest Stable Version](https://poser.pugx.org/headoo/google-vision-api-bundle/v/stable)](https://packagist.org/packages/headoo/google-vision-api-bundle)
+[![codecov](https://codecov.io/gh/Headoo/GoogleVisionApiBundle/branch/master/graph/badge.svg)](https://codecov.io/gh/Headoo/GoogleVisionApiBundle)
 
 GoogleVisionApiBundle is a Symfony2/3 Bundle for use the API Google Vision simply (https://cloud.google.com/vision/)
 
